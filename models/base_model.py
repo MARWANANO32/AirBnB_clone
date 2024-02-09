@@ -3,7 +3,8 @@
 """
 import uuid
 import datetime
-now = datetime.datetime.now
+datetimeObj = datetime.datetime
+now = datetimeObj.now
 
 
 class BaseModel():
@@ -33,3 +34,13 @@ class BaseModel():
         """_summary_
         """
         self.updated_at = now()
+
+    def to_dict(self):
+        """_summary_
+        """
+        return {
+            **self.__dict__,
+            '__class__': self.__class__.__name__,
+            'created_at': datetimeObj.isoformat(self.created_at),
+            'updated_at': datetimeObj.isoformat(self.updated_at),
+        }
