@@ -28,6 +28,15 @@ class TestBaseModel(unittest.TestCase):
         """
         model = BaseModel()
         self.assertIsInstance(model, BaseModel)
+        model2 = BaseModel(**model.to_dict())
+        self.assertIsInstance(model2, BaseModel)
+
+    def test_copying(self):
+        """_summary_
+        """
+        model = BaseModel()
+        model2 = BaseModel(**model.to_dict())
+        self.assertDictEqual(model2.to_dict(), model.to_dict())
 
     def test_str(self):
         """_summary_
