@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+""" My class module
+"""
 import cmd
 
 
