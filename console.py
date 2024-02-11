@@ -6,16 +6,15 @@ import models
 
 
 class HBNBCommand(cmd.Cmd):
-    custom_prompt = "hbnb"
+    prompt = "(hbnb) "
 
-    def Quit(self, args):
+    def do_quit(self, args):
+        """Quit command to exit the program\n"""
         return True
 
-    def EOF(self, args):
+    def do_EOF(self, args):
+        """EOF command to exit the program\n"""
         return True
-
-    def Empty_line(self):
-        return False
 
     def Create(self, args):
         if args == "":
