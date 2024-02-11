@@ -5,6 +5,8 @@ import cmd
 
 
 class HBNBCommand(cmd.Cmd):
+    """_summary_
+    """
     prompt = "(hbnb) "
 
     def do_quit(self, args):
@@ -16,6 +18,7 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def emptyline(self):
+        """_summary_"""
         return False
 
 
