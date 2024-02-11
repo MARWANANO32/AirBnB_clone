@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-
 import cmd
-import json
-import models
 
 
 class HBNBCommand(cmd.Cmd):
@@ -34,6 +31,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
         else:
             print("** no instance found **")
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
