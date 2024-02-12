@@ -7,7 +7,7 @@ import json
 class Serialization():
     """_summary_
     """
-    
+
     @staticmethod
     def from_json_string(json_string):
         """_summary_
@@ -31,5 +31,5 @@ class Serialization():
         is_none = objs is None
         not_dict = type(objs) is not dict
         if is_none or not_dict or len(objs) == 0:
-            return "\{\}"
+            return "{}"
         return json.dumps(objs)

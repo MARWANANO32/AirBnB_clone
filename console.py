@@ -30,7 +30,7 @@ class HBNBCommand(cmd.Cmd):
             return
         classname = args[0]
         obj = self.__mapping(classname)
-        if obj == False:
+        if not obj:
             print("** class doesn't exist **")
         else:
             obj = obj()
@@ -44,7 +44,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         classname = self.__mapping(args[0])
-        if classname == False:
+        if not classname:
             print("** class doesn't exist **")
             return
         if len(args) < 2:
@@ -64,7 +64,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         classname = self.__mapping(args[0])
-        if classname == False:
+        if not classname:
             print("** class doesn't exist **")
             return
         if len(args) < 2:
@@ -80,7 +80,7 @@ class HBNBCommand(cmd.Cmd):
         """All command to get all instances\n"""
         if args[0] != '':
             classname = self.__mapping(args[0])
-            if classname == False:
+            if not classname:
                 print("** class doesn't exist **")
                 return
         res = []
@@ -96,7 +96,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         classname = self.__mapping(args[0])
-        if classname == False:
+        if not classname:
             print("** class doesn't exist **")
             return
         if len(args) < 2:
