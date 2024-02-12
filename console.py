@@ -3,6 +3,12 @@
 """
 import cmd
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.review import Review
+from models.place import Place
+from models.city import City
+from models.amenity import Amenity
 from models import storage
 
 
@@ -127,6 +133,18 @@ class HBNBCommand(cmd.Cmd):
         """
         if classname == 'BaseModel':
             return BaseModel
+        elif classname == 'User':
+            return User
+        elif classname == 'State':
+            return State
+        elif classname == 'Review':
+            return Review
+        elif classname == 'Place':
+            return Place
+        elif classname == 'City':
+            return City
+        elif classname == 'Amenity':
+            return Amenity
         else:
             return False
 
