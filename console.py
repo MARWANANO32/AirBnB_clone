@@ -57,6 +57,71 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** no instance found **")
 
+    def do_destroy(self, *args):
+        """Destroy command to destroy an instance\n"""
+        args = args[0].split(' ')
+        if args[0] == '':
+            print("** class name missing **")
+            return
+        classname = self.__mapping(args[0])
+        if classname == False:
+            print("** class doesn't exist **")
+            return
+        if len(args) < 2:
+            print("** instance id missing **")
+            return
+        id = args[1]
+        if classname.destroy(id):
+            storage.save()
+        else:
+            print("** no instance found **")
+
+    def do_all(self, *args):
+        """All command to get all instances\n"""
+        if args[0] != '':
+            classname = self.__mapping(args[0])
+            if classname == False:
+                print("** class doesn't exist **")
+                return
+        res = []
+        objs = storage.all()
+        for key in objs:
+            res.append(str(objs[key]))
+        print(res)
+
+    def do_update(self, *args):
+        """Update command to update instance by id\n"""
+        args = args[0].split(' ')
+        if args[0] == '':
+            print("** class name missing **")
+            return
+        classname = self.__mapping(args[0])
+        if classname == False:
+            print("** class doesn't exist **")
+            return
+        if len(args) < 2:
+            print("** instance id missing **")
+            return
+        if len(args) < 3:
+            print("** attribute name missing **")
+            return
+        if len(args) < 4:
+            print("** value missing **")
+            return
+        id = args[1]
+        key = args[2]
+        val = args[3][1:-1]
+        obj = classname.find(id)
+        if obj:
+            if hasattr(obj, key):
+                attrType = type(obj.id)
+                setattr(obj, key, attrType(val))
+            else:
+                setattr(obj, key, val)
+            obj.save()
+        else:
+            print("** no instance found **")
+
     def __mapping(self, classname):
         """_summary_
         """

@@ -64,3 +64,15 @@ class BaseModel():
             if key.split('.')[1] == str(id):
                 return objs[key]
         return False
+
+    @classmethod
+    def destroy(cls, id):
+        """_summary_
+        """
+        objs = models.storage.all()
+        for key in objs:
+            if key.split('.')[1] == str(id):
+                del objs[key]
+                models.storage.destroy(key)
+                return True
+        return False

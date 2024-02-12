@@ -16,6 +16,12 @@ class FileStorage():
         """
         return dict(self.__objects)
 
+    def destroy(self, key):
+        """_summary_
+        """
+        del self.__objects[key]
+        return True
+
     def new(self, obj):
         """_summary_
 
