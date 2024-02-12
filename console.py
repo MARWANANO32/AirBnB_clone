@@ -3,6 +3,7 @@
 """
 import cmd
 from models.base_model import BaseModel
+from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -23,7 +24,8 @@ class HBNBCommand(cmd.Cmd):
         return False
 
     def do_create(self, *args):
-        if len(args) == 0:
+        """Create command to create an instance\n"""
+        if args[0] == '':
             print("** class name missing **")
             return
         classname = args[0]
@@ -31,19 +33,27 @@ class HBNBCommand(cmd.Cmd):
         if obj == False:
             print("** class doesn't exist **")
         else:
+            obj = obj()
             obj.save()
             print(obj.id)
 
     def do_show(self, *args):
-        a = 0
-        arg = args.split()
-
-        if args == "":
+        """Show command to show an instance\n"""
+        args = args[0].split(' ')
+        if args[0] == '':
             print("** class name missing **")
-        elif arg[0] not in HBNBCommand:
+            return
+        classname = self.__mapping(args[0])
+        if classname == False:
             print("** class doesn't exist **")
-        elif len(arg) < 2:
+            return
+        if len(args) < 2:
             print("** instance id missing **")
+            return
+        id = args[1]
+        obj = classname.find(id)
+        if obj:
+            print(obj)
         else:
             print("** no instance found **")
 
@@ -51,7 +61,7 @@ class HBNBCommand(cmd.Cmd):
         """_summary_
         """
         if classname == 'BaseModel':
-            return BaseModel()
+            return BaseModel
         else:
             return False
 

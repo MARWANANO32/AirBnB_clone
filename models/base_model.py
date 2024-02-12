@@ -54,3 +54,13 @@ class BaseModel():
             'created_at': datetimeObj.isoformat(self.created_at),
             'updated_at': datetimeObj.isoformat(self.updated_at),
         }
+
+    @classmethod
+    def find(cls, id):
+        """_summary_
+        """
+        objs = models.storage.all()
+        for key in objs:
+            if key.split('.')[1] == str(id):
+                return objs[key]
+        return False
