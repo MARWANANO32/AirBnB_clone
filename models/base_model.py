@@ -77,6 +77,17 @@ class BaseModel():
         return res
 
     @classmethod
+    def count(cls):
+        """_summary_
+        """
+        objs = models.storage.all()
+        count = 0
+        for key in objs:
+            if key.split('.')[0] == cls.__name__:
+                count += 1
+        return count
+
+    @classmethod
     def destroy(cls, id):
         """_summary_
         """

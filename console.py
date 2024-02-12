@@ -130,10 +130,13 @@ class HBNBCommand(cmd.Cmd):
 
     def default(self, line):
         parts = line.split('.')
-        if len(parts) == 2 and parts[1] == 'all()':
+        if len(parts) == 2:
             model = self.__mapping(parts[0])
             if model:
-                print(model.all())
+                if parts[1] == 'all()':
+                    print(model.all())
+                elif parts[1] == 'count()':
+                    print(model.count())
 
     def __mapping(self, classname):
         """_summary_
