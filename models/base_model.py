@@ -66,6 +66,17 @@ class BaseModel():
         return False
 
     @classmethod
+    def all(cls):
+        """_summary_
+        """
+        objs = models.storage.all()
+        res = []
+        for key in objs:
+            if key.split('.')[0] == cls.__name__:
+                res.append(str(objs[key]))
+        return res
+
+    @classmethod
     def destroy(cls, id):
         """_summary_
         """

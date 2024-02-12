@@ -1,4 +1,6 @@
 #!/usr/bin/python3
 from models import storage
+from models.user import User
 
-print(storage.all())
+user = User()
+print(user.to_dict())

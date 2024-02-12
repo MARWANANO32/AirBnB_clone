@@ -128,6 +128,13 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** no instance found **")
 
+    def default(self, line):
+        parts = line.split('.')
+        if len(parts) == 2 and parts[1] == 'all()':
+            model = self.__mapping(parts[0])
+            if model:
+                print(model.all())
+
     def __mapping(self, classname):
         """_summary_
         """
