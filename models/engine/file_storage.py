@@ -58,8 +58,6 @@ class FileStorage():
         dict = Serialization.from_json_string(content)
         return [BaseModel(**obj) for obj in dict.values()]
 
-
-
     def __save_to_file(self, objs):
         """_summary_ - from 0x0C project
 
@@ -72,8 +70,6 @@ class FileStorage():
         content = Serialization.to_json_string(objs_dict)
         with open(self.__file_path, "w") as f:
             f.write(content)
-
-
 
     def __get_obj_key(self, obj):
         """_summary_
