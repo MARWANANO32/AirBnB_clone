@@ -2,6 +2,12 @@
 """ My class module
 """
 from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.review import Review
+from models.place import Place
+from models.city import City
+from models.amenity import Amenity
 from models.engine.serialization import Serialization
 
 
@@ -56,7 +62,28 @@ class FileStorage():
         if content == "":
             return []
         dict = Serialization.from_json_string(content)
-        return [BaseModel(**obj) for obj in dict.values()]
+        objs = []
+        for obj in dict.values():
+            objs.append(self.__get_obj_instance_from_class_name(obj))
+        return objs
+
+    def __get_obj_instance_from_class_name(self, obj):
+        """_summary_
+        """
+        if obj['__class__'] == 'User':
+            return User(**obj)
+        elif obj['__class__'] == 'State':
+            return State(**obj)
+        elif obj['__class__'] == 'Review':
+            return Review(**obj)
+        elif obj['__class__'] == 'Place':
+            return Place(**obj)
+        elif obj['__class__'] == 'City':
+            return City(**obj)
+        elif obj['__class__'] == 'Amenity':
+            return Amenity(**obj)
+        else:
+            return BaseModel(**obj)
 
     def __save_to_file(self, objs):
         """_summary_ - from 0x0C project
